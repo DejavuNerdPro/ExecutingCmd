@@ -15,13 +15,22 @@ class main {
         int index = 0;
         CmdExecutor cmdExecutor = CmdExecutor.getInstance();
 
-        // for Runtime Implement
+        // for Runtime Implemention
         // making directory
         index = CmdExecutor.runtimeProcessExecutor(makeDir);
         cmdExecutor.errorhandling(index);
 
         // starting an application
         index = CmdExecutor.runtimeProcessExecutor(startApp);
+        cmdExecutor.errorhandling(index);
+
+        // for Process Builder Implementation
+        // making directory
+        index = CmdExecutor.builderProcessExecutor(makeDir);
+        cmdExecutor.errorhandling(index);
+
+        // for starting an application
+        index = CmdExecutor.builderProcessExecutor(startApp);
         cmdExecutor.errorhandling(index);
 
     }
