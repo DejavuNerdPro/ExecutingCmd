@@ -1,0 +1,80 @@
+ Executable Command with JAVA Code
+ ===================================
+
+ (1) With java.lang.Runtine
+
+Runtime.getRuntime().exec() method in Java. This method allows you to run a command in a separate process.
+
+Here's a brief breakdown of your code:
+
+java
+
+Process runtimeProcess = null;
+try {
+    runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+} catch (IOException e) {
+    e.printStackTrace();
+}
+Declaration: Process runtimeProcess = null; declares a variable runtimeProcess of type Process and initializes it to null.
+
+Execution of the Command: The Runtime.getRuntime().exec(executeCmd); line attempts to execute the command specified by the executeCmd string. The result is a Process object, which represents the spawned process.
+
+Exception Handling: The code is wrapped in a try-catch block to handle any IOException that might occur during the execution of the command. If an exception occurs, it prints the stack trace.
+
+Keep in mind that the Runtime.getRuntime().exec() method has some limitations and may not work as expected in all scenarios. It's often recommended to use the ProcessBuilder class for more control over the process and to handle input and output streams more effectively.
+
+Also, remember to handle the input and output streams of the process to interact with it if needed. The ProcessBuilder provides a more flexible way to manage these streams.
+
+If you have any specific questions or if there's anything else you'd like assistance with, feel free to ask!
+
+--------------------------------------------------------------------------------------------------
+
+(2) Process Builder
+
+Using ProcessBuilder is often recommended for more flexibility and control over the process execution. Here's an example of how you can use ProcessBuilder:
+
+java
+
+import java.io.IOException;
+import java.util.List;
+
+public class ExecuteCommandWithProcessBuilder {
+    public static void main(String[] args) {
+        // Command to be executed
+        List<String> command = List.of("your_command_here", "arg1", "arg2");
+
+        // Create ProcessBuilder
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+
+        try {
+            // Start the process
+            Process process = processBuilder.start();
+
+            // Optionally, you can get the input and error streams and handle them
+            // InputStream inputStream = process.getInputStream();
+            // InputStream errorStream = process.getErrorStream();
+
+            // Wait for the process to finish
+            int exitCode = process.waitFor();
+
+            // Print the exit code
+            System.out.println("Exit Code: " + exitCode);
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+In this example:
+
+You create a ProcessBuilder and provide it with the command to be executed, along with any arguments.
+The start() method is called to start the process.
+Optionally, you can obtain input and error streams from the process and handle them as needed.
+The waitFor() method is used to wait for the process to finish, and the exit code is printed.
+Make sure to replace "your_command_here", "arg1", "arg2" with the actual command and its arguments you want to execute.
+
+Using ProcessBuilder is generally more versatile than Runtime.getRuntime().exec(), especially when dealing with complex command-line operations or handling input/output streams.
+-------------------------------------------------------------------------------------------------------------------
+
+
+
