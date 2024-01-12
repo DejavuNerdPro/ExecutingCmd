@@ -6,10 +6,10 @@ class main {
     public static void main(String[] args) {
         File dDrive = new File("D:");
         String directory = dDrive.getAbsolutePath();
-        directory = System.getProperty("user.dir");
+        directory = System.getProperty("user.dir").replace("\"", "");
         String applicationPath = "C:\\Program Files\\CCleaner\\CCleaner.exe";
 
-        String makeDir = "cmd /c mkdir" + directory;
+        String makeDir = "cmd /c mkdir " + directory + "\\NewExecutorFolder";
         String startApp = "cmd /c start \"\" \"" + applicationPath + "\"";
 
         int index = 0;
