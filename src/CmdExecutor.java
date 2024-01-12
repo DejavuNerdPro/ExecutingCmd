@@ -32,11 +32,20 @@ public class CmdExecutor {
         int runtimeComplete = 0;
         try {
             runtimeComplete = runtimeProcess.waitFor();
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.out.println(e);
         }
 
         return runtimeComplete;
+    }
+
+    public void errorhandling(int n) {
+        if (n != 0) {
+            System.out.println("Index : " + n + " Command Executed.");
+        } else {
+            System.out.println("Index : " + n + " Yet to Executed.");
+        }
     }
 
 }
